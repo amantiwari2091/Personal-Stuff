@@ -63,7 +63,7 @@ void replaceAll(char *str,const char *oldWord, const char *newWord)
     //Fix: If oldWord and newWord are same it goes to infinite loop
     if(!stremp(oldWord,newWord))
     {
-        reutrn;
+        return;
     }
     /* 
     Repeat till all occurences are replaced.
