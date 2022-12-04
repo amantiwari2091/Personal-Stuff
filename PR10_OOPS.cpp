@@ -4,7 +4,7 @@
 #include<string.h>
 #define BUFFER_SIZE 1000
 /* Function declaration */
-void replaceAll(char *str, const char *oldword, const char *newWord):
+void replaceAll(char *str, const char *oldWord, const char *newWord):
 int main()
 {
     /* File pointer to hold reference of input file*/
@@ -21,10 +21,10 @@ int main()
     cout<<"Replace"<<oldWord<<"with :";
     cin>>newWord;
     /* Open all required files*/
-    fPtr=fOpen(path,"r");
-    fTemp=fOpen("replace.tmp","w");
+    fPtr=fopen(path,"r");
+    fTemp=fopen("replace.tmp","w");
     /* fopen() return NULL if unable to open filein given mode*/
-    if (fPtr = NULL || fTemp = NULL)
+    if (fPtr == NULL || fTemp == NULL)
     {
         /* Unable to open file hence exit*/
         cout<<"\n Unable to open file. \n";
@@ -33,7 +33,7 @@ int main()
     }
     /* 
     * Read line from source file and write to destination file after replacing given word*/
-    while((fgets(buffer,BUFFER_SIZE,fPtr)) !=NULL)
+    while((fgets(buffer,BUFFER_SIZE,fPtr)) !==NULL)
     {
         // Replace all occurence of word from current line
         replaceAll(buffer,oldWord,newWord);
@@ -68,7 +68,7 @@ void replaceAll(char *str,const char *oldWord, const char *newWord)
     /* 
     Repeat till all occurences are replaced.
     */
-    while((pos=strstr(str,oldWord))!=NULL)
+    while((pos=strstr(str,oldWord))!==NULL)
     {
         // Backup current line
         strepy(temp,str);
