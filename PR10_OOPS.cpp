@@ -31,7 +31,59 @@ int main()
         cout<<"Please check whether file exists and you have read/write privilege. \n";
         exit(EXIT_SUCCESS);
     }
+    /* 
+    * Read line from source file and write to destination file after replacing given word*/
+    while((fgets(buffer,BUFFER_SIZE,fPtr)) !=NULL)
+    {
+        // Replace all occurence of word from current line
+        replaceAll(buffer,oldWord,newWord);
+        // After replacing write it to temp file
+        fputs(buffer,fTemp);
+    }
+    /* Close all files to release resource */
+    fclose(fPtr);
+    fclose(fTemp);
 
-
+    /* Delete orignal source file */
+    remove(path);
+    /* Rename temp file as orignal file*/
+    rename("replace.temp",path);
     
+    cout<<"\n Successfully replaced all occurences of "<<oldWord<<"with"<<newWord;
+    return 0;   
+}
+/* 
+* Replace all occurences of a given a word in string.*/
+void replaceAll(char *str,const char *oldWord, const char *newWord)
+{
+    char *pos, temp[BUFFER_SIZE];
+    int index=0;
+    int owlen;
+    owlen = strlen(oldWord);
+    //Fix: If oldWord and newWord are same it goes to infinite loop
+    if(!stremp(oldWord,newWord))
+    {
+        reutrn;
+    }
+    /* 
+    Repeat till all occurences are replaced.
+    */
+    while((pos=strstr(str,oldWord))!=NULL)
+    {
+        // Backup current line
+        strepy(temp,str);
+
+        //Index of current found word
+        index=pos-str;
+
+        //Terminate str after word found index
+        str[index]='\0';
+
+        //Concatenate str with new word
+        streat(str,newWord);
+
+        // Concatenate str with remaining words after
+        // oldWord found index
+        streat(str,temp+index+owlen);
+    }
 }
