@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+class Employee{
+    public:
+    string name;
+    int id;
+    void getData(){
+        cout<<id<<" "<<name<<endl;
+    }
+    void putData(int x, string s){
+        this->id = x;
+        this->name = s;
+        return;
+    }
+};
+
+class Salary: public Employee{
+    public:
+    int Basic, DA, HRA;
+    int salary(){
+        return Basic+DA+HRA;
+    }
+};
+
+int main(){
+    Salary e1;
+    int id;
+    string name;
+    cin>>id>>name;
+    e1.putData(id, name);
+    e1.getData();
+    int Basic, DA, HRA;
+    cin>>Basic>>DA>>HRA;
+    e1.Basic=Basic;
+    e1.DA=DA;
+    e1.HRA=HRA;
+    cout<<e1.salary()<<endl;
+
+}
